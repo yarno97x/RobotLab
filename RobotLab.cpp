@@ -5,6 +5,7 @@ Servo rightservo;
 const int pingPin = 5; // Trigger Pin of Ultrasonic Sensor
 const int echoPin = 6; // Echo Pin of Ultrasonic Sensor
 float time;
+float gaptime; 
 const float speed = 35.64; //speed (cm/s) obtained experimentally
 int initial_dist;
 
@@ -16,6 +17,7 @@ void setup() {
   //setupt the pin modes  
   pinMode(pingPin, OUTPUT);
   pinMode(echoPin, INPUT);
+  gaptime = (60)/speed;
 
   Get_initial_dist(); // Get y distance
   GetTime();
@@ -62,7 +64,7 @@ void loop() {
     if(initial_dist > 200) { // hits the gap
         TurnRight();
         straight(); // crosses second gap
-        delay(2000);
+        delay(gaptime*1000);
         TurnLeft();
         straight(); //move indefinitely through last straight
         delay(10000);
