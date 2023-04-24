@@ -43,7 +43,7 @@ void Get_dist() {
     //get the pulse duration in microseconds
     duration2 = pulseIn(echoPin, HIGH);
     dist = duration2*0.034/2;
-    if (1400 > dist > 800) {
+    if (1400 > dist > 800) { 
       Get_dist();
     }
     else {
@@ -52,18 +52,18 @@ void Get_dist() {
 
 }
 void straight() {
-    leftservo.write(140);
-    rightservo.write(-170);
+    leftservo.write(140); //experimentally obtained; change if needed
+    rightservo.write(-170); //experimentally obtained; change if needed
 }
 void TurnRight() {
     leftservo.write(180);
     rightservo.write(180);
-    delay(350);
+    delay(350); //experimentally obtained; change if needed
 }
 void TurnLeft() {
     leftservo.write(-180);
     rightservo.write(-180);
-    delay(500);
+    delay(500); //experimentally obtained; change if needed
 }
 
 void setup() {
@@ -81,13 +81,13 @@ void setup() {
 
 void loop() {
   straight();
-  delay(200);
+  delay(200); //experimentally obtained; change if needed
   Get_dist();
   
   if(dist > 200) {
     TurnRight();
     straight();
-    delay(gaptime*1000+1000);
+    delay(gaptime*1000+1000); //+1000 is an error margin, otherwise the robot may turn into the wall; modify if needed
     TurnLeft();
     straight();
     delay(10000);
